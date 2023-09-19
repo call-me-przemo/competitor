@@ -2,7 +2,7 @@ services:
   mysql:
     image: mysql:8.1.0
     ports:
-      - 3360:3360
+      - 3306:3306
     environment:
       - MYSQL_DATABASE=competitor
       - MYSQL_USER=competitor
