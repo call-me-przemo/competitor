@@ -1,4 +1,5 @@
 // This file contains code that we reuse between our tests.
+// eslint-disable-next-line
 const helper = require("fastify-cli/helper.js");
 import * as path from "path";
 import * as tap from "tap";
