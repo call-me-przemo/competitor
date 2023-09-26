@@ -2,7 +2,13 @@ import "@fontsource/roboto/300.css";
 import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
+import CssBaseline from "@mui/material/CssBaseline";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
 import type { Metadata } from "next";
+import { Navbar } from "@/components";
+
+const pages = ["home", "not home", "another page", "something"];
 
 export const metadata: Metadata = {
   title: "Competitor App",
@@ -16,7 +22,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Box sx={{ display: "flex" }}>
+          <CssBaseline />
+          <Navbar pages={pages} />
+          <Box component="main" sx={{ p: 3 }}>
+            <Toolbar />
+            {children}
+          </Box>
+        </Box>
+      </body>
     </html>
   );
 }
