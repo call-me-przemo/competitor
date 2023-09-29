@@ -23,7 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Box sx={{ display: "flex" }}>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
           <CssBaseline />
           <Navbar pages={pages} />
           <Box component="main" sx={{ p: 3 }}>

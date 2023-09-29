@@ -15,6 +15,7 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import RunCircleOutlinedIcon from "@mui/icons-material/RunCircleOutlined";
+import orange from "@mui/material/colors/orange";
 import MuiLink from "@mui/material/Link";
 import NextLink from "next/link";
 
@@ -83,7 +84,10 @@ export function Navbar({ pages }: { pages: string[] }) {
       >
         <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
           <Typography variant="h6" sx={{ my: 2 }}>
-            Competitor
+            <Box component="span" sx={{ color: orange[500] }}>
+              C
+            </Box>
+            ompetitor
           </Typography>
           <Divider />
           <List>
