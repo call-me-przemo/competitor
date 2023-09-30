@@ -24,17 +24,7 @@ export default function Home() {
         </Box>{" "}
         sport events management system
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: {
-            xs: "column",
-            lg: "row",
-          },
-          my: 8,
-          justifyContent: "center",
-        }}
-      >
+      <Box sx={homeBoxStyle}>
         <SloganPaper Icon={CreateIcon} slogan={"Create"} />
         <SloganPaper Icon={BuildIcon} slogan={"Customize"} rotateRight={true} />
         <SloganPaper Icon={AttachMoneyIcon} slogan={"Benefit"} />
@@ -51,17 +41,7 @@ export default function Home() {
       >
         What folks says
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: {
-            xs: "column",
-            lg: "row",
-          },
-          my: 8,
-          justifyContent: "center",
-        }}
-      >
+      <Box sx={homeBoxStyle}>
         <OpinionCard src="/images/folks/folk-one.jpg" alt="Alice Chains">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam, ad.
           Cupiditate facilis, perferendis, earum exercitationem ducimus,
@@ -96,3 +76,13 @@ export default function Home() {
     </Box>
   );
 }
+
+const homeBoxStyle = {
+  display: "flex",
+  flexDirection: {
+    xs: "column",
+    lg: "row",
+  },
+  my: 8,
+  justifyContent: "center",
+};
