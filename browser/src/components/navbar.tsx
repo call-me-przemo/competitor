@@ -49,7 +49,12 @@ export function Navbar({ pages }: { pages: string[] }) {
           </MuiLink>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {pages.map((page) => (
-              <Button key={page} sx={{ color: "#fff" }}>
+              <Button
+                component={NextLink}
+                href={page}
+                key={page}
+                sx={{ color: "#fff" }}
+              >
                 {page}
               </Button>
             ))}
@@ -93,7 +98,11 @@ export function Navbar({ pages }: { pages: string[] }) {
           <List>
             {pages.map((page) => (
               <ListItem key={page} disablePadding>
-                <ListItemButton sx={{ textAlign: "center" }}>
+                <ListItemButton
+                  sx={{ textAlign: "center" }}
+                  component={NextLink}
+                  href={page}
+                >
                   <ListItemText primary={page} />
                 </ListItemButton>
               </ListItem>
