@@ -8,7 +8,7 @@ import Toolbar from "@mui/material/Toolbar";
 import type { Metadata } from "next";
 import { Navbar } from "@/components";
 
-const pages = ["home", "not home", "another page", "something"];
+const pages = ["account"];
 
 export const metadata: Metadata = {
   title: "Competitor App",
