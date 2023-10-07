@@ -9,3 +9,99 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+enum UserRole {
+  COMPETITOR
+  ORGANIZER
+  TIMER
+  ADMIN
+}
+
+model User {
+  id                      Int                    @id @default(autoincrement())
+  createdAt               DateTime               @default(now())
+  mail                    String                 @unique
+  password                String
+  role                    UserRole               @default(COMPETITOR)
+  person                  Person                 @relation(fields: [personId], references: [id])
+  personId                Int                    @unique
+  organizingInstitution   OrganizingInstitution? @relation(fields: [organizingInstitutionId], references: [id])
+  organizingInstitutionId String?
+}
+
+model Person {
+  id          Int           @id @default(autoincrement())
+  firstName   String
+  lastName    String
+  dateOfBirth DateTime      @db.Date
+  country     String
+  city        String
+  phone       String
+  mail        String
+  user        User?
+  participant Participant[]
+}
+
+model Competition {
+  id                      String                @id @default(uuid())
+  name                    String
+  country                 String
+  place                   String
+  active                  Boolean
+  hidden                  Boolean?
+  dateFrom                DateTime              @db.Date
+  dateTo                  DateTime?             @db.Date
+  description             String                @db.VarChar(1000)
+  statutePath             String
+  registrationOpenDate    DateTime?
+  registrationCloseDate   DateTime?
+  additionalFields        Json?
+  disciplines             Discipline[]
+  organizer               OrganizingInstitution @relation(fields: [organizingInstitutionId], references: [id])
+  organizingInstitutionId String
+}
+
+model OrganizingInstitution {
+  id                String        @id @default(uuid())
+  name              String        @unique
+  createdAt         DateTime      @default(now())
+  country           String
+  city              String
+  street            String?
+  bankAccountNumber String
+  tin               String // equivalent of NIP in Poland
+  description       String?       @db.VarChar(1000)
+  members           User[]
+  competitions      Competition[]
+}
+
+model Discipline {
+  id            Int           @id @default(autoincrement())
+  name          String
+  distance      Int?          @db.UnsignedSmallInt
+  prices        Price[]
+  competition   Competition?  @relation(fields: [competitionId], references: [id])
+  competitionId String?
+  participant   Participant[]
+}
+
+model Price {
+  id           Int         @id @default(autoincrement())
+  dateTo       DateTime
+  amount       Int         @db.UnsignedSmallInt
+  currencyCode String      @db.Char(3)
+  discipline   Discipline? @relation(fields: [disciplineId], references: [id])
+  disciplineId Int?
+}
+
+model Participant {
+  id               Int        @id @default(autoincrement())
+  club             String?
+  team             String?
+  paid             Boolean    @default(false)
+  additionalFields Json?
+  person           Person     @relation(fields: [personId], references: [id])
+  personId         Int
+  discipline       Discipline @relation(fields: [disciplineId], references: [id])
+  disciplineId     Int
+}
