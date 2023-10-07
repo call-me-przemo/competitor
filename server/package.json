@@ -13,7 +13,7 @@
     "watch:ts": "tsc -w",
     "dev": "npm run build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
     "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
-    "prettify": "prettier . --write",
+    "format": "prettier . --write",
     "lint": "eslint src/** test/**"
   },
   "keywords": [],
@@ -22,6 +22,7 @@
   "dependencies": {
     "@fastify/autoload": "^5.0.0",
     "@fastify/sensible": "^5.0.0",
+    "@prisma/client": "5.3.1",
     "fastify": "^4.0.0",
     "fastify-cli": "^5.8.0",
     "fastify-plugin": "^4.0.0"
