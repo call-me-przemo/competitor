@@ -18,6 +18,7 @@ CREATE TABLE `Person` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `firstName` VARCHAR(191) NOT NULL,
     `lastName` VARCHAR(191) NOT NULL,
+    `gender` ENUM('MALE', 'FEMALE') NOT NULL,
     `dateOfBirth` DATE NOT NULL,
     `country` VARCHAR(191) NOT NULL,
     `city` VARCHAR(191) NOT NULL,
