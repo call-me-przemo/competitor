@@ -14,7 +14,7 @@
     "dev": "npm run build:ts && concurrently -k -p \"[{name}]\" -n \"TypeScript,App\" -c \"yellow.bold,cyan.bold\" \"npm:watch:ts\" \"npm:dev:start\"",
     "dev:start": "fastify start --ignore-watch=.ts$ -w -l info -P dist/app.js",
     "format": "prettier . --write",
-    "lint": "eslint src/** test/**"
+    "lint": "eslint src/** test/** prisma/seeders/**"
   },
   "keywords": [],
   "author": "",
@@ -28,6 +28,7 @@
     "fastify-plugin": "^4.0.0"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.1.0",
     "@types/node": "^20.4.4",
     "@types/tap": "^15.0.5",
     "@typescript-eslint/eslint-plugin": "^6.7.3",
@@ -43,6 +44,9 @@
     "typescript": "^4.5.4"
   },
   "volta": {
-    "node": "20.8.0"
+    "node": "20.8.1"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seeders"
   }
 }
