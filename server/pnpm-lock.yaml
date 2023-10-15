@@ -25,6 +25,9 @@ dependencies:
     version: 4.5.1
 
 devDependencies:
+  '@faker-js/faker':
+    specifier: ^8.1.0
+    version: 8.1.0
   '@types/node':
     specifier: ^20.4.4
     version: 20.6.0
@@ -320,6 +323,11 @@ packages:
   /@eslint/js@8.50.0:
     resolution: {integrity: sha512-NCC3zz2+nvYd+Ckfh87rA47zfu2QsQpvc6k1yzTk+b9KzRj0wkGa8LSoGOXN6Zv4lRf/EIoZ80biDh9HOI+RNQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
+  /@faker-js/faker@8.1.0:
+    resolution: {integrity: sha512-38DT60rumHfBYynif3lmtxMqMqmsOQIxQgEuPZxCk2yUYN0eqWpTACgxi0VpidvsJB8CRxCpvP7B3anK85FjtQ==}
+    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
     dev: true
 
   /@fastify/ajv-compiler@3.5.0:
