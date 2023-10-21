@@ -1,24 +1,31 @@
-# Getting Started with [Fastify-CLI](https://www.npmjs.com/package/fastify-cli)
+# Server part
 
-This project was bootstrapped with Fastify-CLI.
+This is server part of the application created using `fastify` as REST API and `prisma` as database layer.
 
-## Available Scripts
+## Development
 
-In the project directory, you can run:
+### Setting up database
 
-### `npm run dev`
+Before setting up the database ensure that `mysql` container is runnig checkout [README](../README.md) for details.
 
-To start the app in dev mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Use prisma cli commands to migrate and seed db.
 
-### `npm start`
+- to migrate
 
-For production mode
+```bash
+pnpm prisma migrate dev
+```
 
-### `npm run test`
+- to seed (this one may take a while)
 
-Run the test cases.
+```bash
+pnpm prisma db seed
+```
 
-## Learn More
+### Staring server
 
-To learn Fastify, check out the [Fastify documentation](https://www.fastify.io/docs/latest/).
+Checkout [package.json](package.json#L9) for available commands.
+
+### Endpoints documentation
+
+Endpoints are documented using `swagger`, open `/documentation` in you browser to show docs.
