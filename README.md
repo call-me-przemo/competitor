@@ -18,3 +18,8 @@ To run database use `docker compose` - in the root folder of app execute:
 ```bash
 docker compose up -d
 ```
+
+## Related documentation
+
+- [server part](server/README.md)
+- [browser part](browser/README.md)
