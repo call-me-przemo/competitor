@@ -22,7 +22,7 @@ pnpm prisma migrate dev
 pnpm prisma db seed
 ```
 
-### Staring server
+### Starting server
 
 Checkout [package.json](package.json#L9) for available commands.
 

@@ -11,6 +11,9 @@ dependencies:
   '@fastify/sensible':
     specifier: ^5.0.0
     version: 5.2.0
+  '@fastify/type-provider-typebox':
+    specifier: ^3.5.0
+    version: 3.5.0(@sinclair/typebox@0.31.18)
   '@prisma/client':
     specifier: 5.3.1
     version: 5.3.1(prisma@5.3.1)
@@ -41,7 +44,7 @@ devDependencies:
     specifier: ^1.10.1
     version: 1.10.1
   '@types/node':
-    specifier: ^20.8.6
+    specifier: ^20.4.4
     version: 20.8.6
   '@types/tap':
     specifier: ^15.0.5
@@ -429,6 +432,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@fastify/type-provider-typebox@3.5.0(@sinclair/typebox@0.31.18):
+    resolution: {integrity: sha512-f48uGzvLflE/y4pvXOS8qjAC+mZmlqev9CPHnB8NDsBSL4EbeydO61IgPuzOkeNlAYeRP9Y56UOKj1XWFibgMw==}
+    peerDependencies:
+      '@sinclair/typebox': '>=0.26 <=0.31'
+    dependencies:
+      '@sinclair/typebox': 0.31.18
+    dev: false
 
   /@humanwhocodes/config-array@0.11.11:
     resolution: {integrity: sha512-N2brEuAadi0CcdeMXUkhbZB84eskAc8MEX1By6qEchoVywSgXPIjou4rYsl0V3Hj0ZnuGycGCjdNgockbzeWNA==}
