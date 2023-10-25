@@ -9,8 +9,8 @@ export class Service {
     offset: number,
     hidden: boolean = false,
   ): Promise<CompetitionList> {
-    const competitions = (
-      await this.prisma.competition.findMany({
+    const [competitionsEntity, totalCount] = await this.prisma.$transaction([
+      this.prisma.competition.findMany({
         skip: offset,
         take: limit,
         where: { hidden },
@@ -22,18 +22,21 @@ export class Service {
           dateFrom: true,
           dateTo: true,
         },
-      })
-    ).map(({ id, name, place, dateFrom, dateTo }) => ({
-      id,
-      name,
-      place,
-      dateFrom: dateFrom.toString(),
-      dateTo: dateTo?.toString(),
-    }));
+      }),
+      this.prisma.competition.count({
+        where: { hidden },
+      }),
+    ]);
 
-    const totalCount = await this.prisma.competition.count({
-      where: { hidden },
-    });
+    const competitions = competitionsEntity.map(
+      ({ id, name, place, dateFrom, dateTo }) => ({
+        id,
+        name,
+        place,
+        dateFrom: dateFrom.toString(),
+        dateTo: dateTo?.toString(),
+      }),
+    );
 
     return { competitions, limit, offset, totalCount };
   }
