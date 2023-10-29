@@ -4,7 +4,7 @@ import { CompetitionList } from "./types";
 export class Service {
   constructor(private prisma: PrismaClient) {}
 
-  async getCompetitionList(
+  async getCompetitionsList(
     limit: number,
     offset: number,
     hidden: boolean = false,
