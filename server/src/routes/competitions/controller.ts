@@ -11,6 +11,6 @@ export class Controller {
   }> = async (req, rep) => {
     const { limit, offset } = req.query;
 
-    return this.service.getCompetitionList(limit, offset);
+    return this.service.getCompetitionsList(limit, offset);
   };
 }
