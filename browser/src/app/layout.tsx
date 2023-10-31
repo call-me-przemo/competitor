@@ -6,7 +6,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import type { Metadata } from "next";
-import { Navbar } from "@/components";
+import { Navbar } from "./components";
 
 const pages = ["account"];
 
