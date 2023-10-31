@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 import { CompetitionList } from "./types";
 
 export class Service {
@@ -7,25 +7,34 @@ export class Service {
   async getCompetitionsList(
     limit: number,
     offset: number,
-    hidden: boolean = false,
+    includeHidden: boolean = false,
   ): Promise<CompetitionList> {
-    const [competitionsEntity, totalCount] = await this.prisma.$transaction([
-      this.prisma.competition.findMany({
-        skip: offset,
-        take: limit,
-        where: { hidden },
-        orderBy: { dateFrom: "asc" },
-        select: {
-          id: true,
-          name: true,
-          place: true,
-          dateFrom: true,
-          dateTo: true,
-        },
-      }),
-      this.prisma.competition.count({
-        where: { hidden },
-      }),
+    const findManyQueryOptions: Prisma.CompetitionFindManyArgs = {
+      skip: offset,
+      take: limit,
+      orderBy: { dateFrom: "asc" },
+      select: {
+        id: true,
+        name: true,
+        place: true,
+        dateFrom: true,
+        dateTo: true,
+      },
+    };
+
+    if (!includeHidden) {
+      findManyQueryOptions.where = { hidden: false };
+    }
+
+    const countQueryOptions: Prisma.CompetitionCountArgs = {};
+
+    if (!includeHidden) {
+      countQueryOptions.where = { hidden: false };
+    }
+
+    const [competitionsEntity, totalCount] = await Promise.all([
+      this.prisma.competition.findMany(findManyQueryOptions),
+      this.prisma.competition.count(countQueryOptions),
     ]);
 
     const competitions = competitionsEntity.map(
@@ -38,6 +47,6 @@ export class Service {
       }),
     );
 
-    return { competitions, limit, offset, totalCount };
+    return { competitions, limit, offset, totalCount, includeHidden };
   }
 }

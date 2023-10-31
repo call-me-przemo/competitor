@@ -9,8 +9,8 @@ export class Controller {
     Querystring: ControllerListQuerystring;
     Reply: ControllerListReply;
   }> = async (req, rep) => {
-    const { limit, offset } = req.query;
+    const { limit, offset, includeHidden } = req.query;
 
-    return this.service.getCompetitionsList(limit, offset);
+    return this.service.getCompetitionsList(limit, offset, includeHidden);
   };
 }
