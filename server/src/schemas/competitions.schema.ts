@@ -1,15 +1,16 @@
 import { Type } from "@sinclair/typebox";
 
-export const schema = {
+export const competitionsSchema = {
   list: {
     schema: {
       tags: ["competitions"],
       description: "returns list of competitions",
       querystring: Type.Object(
         {
-          limit: Type.Integer({ minimum: 0 }),
-          offset: Type.Integer({ minimum: 0 }),
+          count: Type.Integer({ minimum: 0 }),
+          skip: Type.Integer({ minimum: 0 }),
           includeHidden: Type.Optional(Type.Boolean()),
+          includeInactive: Type.Optional(Type.Boolean()),
         },
         { additionalProperties: false },
       ),
@@ -25,9 +26,10 @@ export const schema = {
             }),
           ),
           totalCount: Type.Integer(),
-          limit: Type.Integer(),
-          offset: Type.Integer(),
+          count: Type.Integer({ minimum: 0 }),
+          skip: Type.Integer({ minimum: 0 }),
           includeHidden: Type.Boolean(),
+          includeInactive: Type.Boolean(),
         }),
       },
     },

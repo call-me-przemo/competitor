@@ -63,7 +63,7 @@ CREATE TABLE `Competition` (
     `name` VARCHAR(191) NOT NULL,
     `country` VARCHAR(191) NOT NULL,
     `place` VARCHAR(191) NOT NULL,
-    `active` BOOLEAN NOT NULL,
+    `active` BOOLEAN NOT NULL DEFAULT true,
     `hidden` BOOLEAN NULL,
     `dateFrom` DATE NOT NULL,
     `dateTo` DATE NULL,
