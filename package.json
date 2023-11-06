@@ -1,0 +1,43 @@
+{
+  "name": "competitor",
+  "version": "1.0.0",
+  "description": "pnpm workspace based monorepo web app",
+  "scripts": {
+    "browser:dev": "pnpm --filter browser dev",
+    "browser:build": "pnpm --filter browser build",
+    "browser:start": "pnpm --filter browser start",
+    "browser:lint": "pnpm --filter browser lint",
+    "browser:format": "pnpm --filter browser format",
+    "server:db:migrate": "pnpm --filter server db:migrate",
+    "server:db:seed": "pnpm --filter server db:seed",
+    "server:db:generate": "pnpm --filter server db:generate",
+    "server:dev": "pnpm --filter server dev",
+    "server:build": "pnpm --filter server build",
+    "server:start": "pnpm --filter server start",
+    "server:lint": "pnpm --filter server lint",
+    "server:format": "pnpm --filter server format",
+    "all:dev": "pnpm -r dev",
+    "all:lint": "pnpm -r lint",
+    "all:format": "pnpm -r format",
+    "all:build": "pnpm -r build",
+    "all:start": "pnpm -r start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "8.53.0",
+    "@prisma/client": "5.5.2"
+  },
+  "devDependencies": {
+    "prettier": "^3.0.3",
+    "eslint-config-prettier": "^9.0.0",
+    "typescript": "5.2.2",
+    "prisma": "^5.5.2",
+    "@types/node": "20.8.10",
+    "ts-node": "^10.9.1"
+  },
+  "volta": {
+    "node": "20.9.0"
+  }
+}

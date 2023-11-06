@@ -1,5 +1,5 @@
 {
-  "name": "browser",
+  "name": "@competitor/browser",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,23 +13,15 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.8",
-    "@mui/icons-material": "^5.14.15",
-    "@mui/material": "^5.14.15",
-    "@types/node": "20.6.0",
-    "@types/react": "18.2.21",
-    "@types/react-dom": "18.2.7",
-    "eslint": "8.49.0",
-    "eslint-config-next": "13.5.3",
-    "next": "13.5.3",
+    "@mui/icons-material": "^5.14.16",
+    "@mui/material": "^5.14.16",
+    "next": "14.0.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "5.2.2"
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^9.0.0",
-    "prettier": "^3.0.3"
-  },
-  "volta": {
-    "node": "20.9.0"
+    "@types/react": "18.2.35",
+    "@types/react-dom": "18.2.14",
+    "eslint-config-next": "14.0.1"
   }
 }
