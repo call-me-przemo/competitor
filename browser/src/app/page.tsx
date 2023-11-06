@@ -5,7 +5,7 @@ import CreateIcon from "@mui/icons-material/Create";
 import BuildIcon from "@mui/icons-material/Build";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import CelebrationIcon from "@mui/icons-material/Celebration";
-import { SloganPaper, OpinionCard } from "./components";
+import { SloganPaper, OpinionCard } from "@/components/root";
 
 export default function Home() {
   return (

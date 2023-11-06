@@ -1,15 +1,15 @@
 import { FastifyPluginAsyncTypebox } from "@fastify/type-provider-typebox";
-import { schema } from "./schema";
-import { Controller } from "./controller";
-import { Service } from "./service";
+import { competitionsSchema } from "../../schemas";
+import { CompetitionsDatabaseService } from "../../services/database";
+import { CompetitionsController } from "../../controllers";
 
 const competitions: FastifyPluginAsyncTypebox = async (
   fastify,
 ): Promise<void> => {
-  const service = new Service(fastify.prisma);
-  const controller = new Controller(service);
+  const databaseService = new CompetitionsDatabaseService(fastify.prisma);
+  const competitionsController = new CompetitionsController(databaseService);
 
-  fastify.get("/", schema.list, controller.list);
+  fastify.get("/", competitionsSchema.list, competitionsController.list);
 };
 
 export default competitions;

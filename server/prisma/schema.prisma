@@ -80,7 +80,7 @@ model Competition {
   name             String
   country          String
   place            String
-  active           Boolean
+  active           Boolean            @default(true)
   hidden           Boolean?
   dateFrom         DateTime           @db.Date
   dateTo           DateTime?          @db.Date
