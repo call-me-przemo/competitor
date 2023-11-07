@@ -17,6 +17,8 @@
     "server:lint": "pnpm --filter server lint",
     "server:format": "pnpm --filter server format",
     "server:format:prisma:schema": "pnpm prisma format --schema server/prisma/schema.prisma",
+    "server:test:unit": "vitest -c server/vitest.config.unit.ts",
+    "server:test:integration": "vitest -c server/vitest.config.integration.ts",
     "all:dev": "pnpm -r dev",
     "all:lint": "pnpm -r lint",
     "all:format": "pnpm -r format",
