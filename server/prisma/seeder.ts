@@ -113,36 +113,36 @@ export class Seeder {
       select: { id: true },
     });
 
-    if (count > users.length * organizations.length) {
+    if (count > users.length) {
       throw new Error(
-        `Number of organization members (${count}),
-        cannot be greater than number of user with organizer role multiplied by number of organizations in database (${
-          users.length * organizations.length
-        })`,
+        `Number of organization members (${count}) cannot be greater
+         than number of users with organizer role (${users.length}) in database`,
       );
     }
 
-    let organizationIndex = 0;
     let userIndex = 0;
-    const members = Array.from(
-      { length: count },
-      (el, idx): OrganizationMember => {
-        if (organizationIndex >= organizations.length) {
-          organizationIndex = 0;
-        }
+    const organizationMembers = Array<OrganizationMember>();
 
-        if (userIndex >= users.length) {
-          userIndex = 0;
-        }
+    for (const organization of organizations) {
+      const members = Array.from(
+        { length: count },
+        (el, idx): OrganizationMember => {
+          if (userIndex >= users.length) {
+            userIndex = 0;
+          }
 
-        return {
-          userId: users[userIndex++].id,
-          organizationId: organizations[organizationIndex++].id,
-        };
-      },
-    );
+          return {
+            userId: users[userIndex++].id,
+            organizationId: organization.id,
+          };
+        },
+      );
+      organizationMembers.push(...members);
+    }
 
-    await this.prisma.organizationMember.createMany({ data: members });
+    await this.prisma.organizationMember.createMany({
+      data: organizationMembers,
+    });
   }
 
   async seedCompetition(count: number) {
@@ -174,7 +174,7 @@ export class Seeder {
           dateTo:
             Math.random() > 0.3 ? null : faker.date.soon({ refDate: dateFrom }),
           description: faker.lorem.lines(),
-          statutePath: "sample path - not important for now",
+          statutePath: faker.system.filePath(),
           organizationId: organizations[organizationIndex++].id,
         };
       },
@@ -193,47 +193,45 @@ export class Seeder {
       },
     });
 
-    const competitions = await this.prisma.organization.findMany({
+    const competitions = await this.prisma.competition.findMany({
       select: { id: true },
     });
 
-    if (count > users.length * competitions.length) {
+    if (count > users.length) {
       throw new Error(
-        `Number of competition timers (${count}),
-        cannot be greater than number of user with timer role multiplied by number of competitions in database (${
-          users.length * competitions.length
-        })`,
+        `Number of competition timers (${count}) cannot be greater
+         than number of users with timer role (${users.length}) in database`,
       );
     }
 
-    let competitionIndex = 0;
     let userIndex = 0;
-    const timers = Array.from(
-      { length: count },
-      (el, idx): CompetitionTimer => {
-        if (competitionIndex >= competitions.length) {
-          competitionIndex = 0;
-        }
+    const competitionTimers = Array<CompetitionTimer>();
 
-        if (userIndex >= users.length) {
-          userIndex = 0;
-        }
+    for (const competition of competitions) {
+      const timers = Array.from(
+        { length: count },
+        (el, idx): CompetitionTimer => {
+          if (userIndex >= users.length) {
+            userIndex = 0;
+          }
 
-        const randNum = Math.random();
+          const randNum = Math.random();
 
-        return {
-          userId: users[userIndex++].id,
-          competitionId: competitions[competitionIndex++].id,
-          agreed: randNum > 0.8 ? false : randNum > 0.4 ? true : null,
-        };
-      },
-    );
+          return {
+            userId: users[userIndex++].id,
+            competitionId: competition.id,
+            agreed: randNum > 0.8 ? false : randNum > 0.4 ? true : null,
+          };
+        },
+      );
+      competitionTimers.push(...timers);
+    }
 
-    await this.prisma.competitionTimer.createMany({ data: timers });
+    await this.prisma.competitionTimer.createMany({ data: competitionTimers });
   }
 
   async seedDiscipline(count: number) {
-    const competitions = await this.prisma.organization.findMany({
+    const competitions = await this.prisma.competition.findMany({
       select: { id: true },
     });
 
@@ -242,34 +240,36 @@ export class Seeder {
     }
 
     const currencyCodes = Object.values(CurrencyCode);
+    const competitionDisciplines = new Array<Omit<Discipline, "id">>();
 
-    let competitionIndex = 0;
-    const disciplines = Array.from(
-      { length: count },
-      (el, idx): Omit<Discipline, "id"> => {
-        if (competitionIndex >= competitions.length) {
-          competitionIndex = 0;
-        }
+    for (const competition of competitions) {
+      const disciplines = Array.from(
+        { length: count },
+        (el, idx): Omit<Discipline, "id"> => {
+          return {
+            name: faker.lorem.word(),
+            distance:
+              Math.random() > 0.3
+                ? faker.number.int({ min: 2, max: 150 })
+                : null,
+            price:
+              Math.random() > 0.3
+                ? faker.number.int({ min: 50, max: 1500 })
+                : null,
+            currency:
+              Math.random() > 0.3
+                ? currencyCodes[faker.number.int({ min: 1, max: 302 })]
+                : null,
+            competitionId: competition.id,
+          };
+        },
+      );
 
-        return {
-          name: faker.lorem.word(),
-          distance:
-            Math.random() > 0.3 ? faker.number.int({ min: 2, max: 150 }) : null,
-          price:
-            Math.random() > 0.3
-              ? faker.number.int({ min: 50, max: 1500 })
-              : null,
-          currency:
-            Math.random() > 0.3
-              ? currencyCodes[faker.number.int({ min: 1, max: 302 })]
-              : null,
-          competitionId: competitions[competitionIndex++].id,
-        };
-      },
-    );
+      competitionDisciplines.push(...disciplines);
+    }
 
     await this.prisma.discipline.createMany({
-      data: disciplines,
+      data: competitionDisciplines,
     });
   }
 
@@ -293,38 +293,38 @@ export class Seeder {
       select: { id: true },
     });
 
-    if (count > people.length * disciplines.length) {
+    if (count > people.length) {
       throw new Error(
-        `Number of participants (${count}),
-        cannot be greater than number of privileged people multiplied by number of disciplines in database (${
-          people.length * disciplines.length
-        })`,
+        `Number of discipline participant (${count}) cannot be greater
+         than number of privileged people with (${people.length}) in database`,
       );
     }
 
     let personIndex = 0;
-    let disciplineIndex = 0;
-    const participants = Array.from(
-      { length: count },
-      (el, idx): Omit<Participant, "id" | "createdAt" | "updatedAt"> => {
-        if (personIndex >= people.length) {
-          personIndex = 0;
-        }
+    const disciplineParticipants = new Array<
+      Omit<Participant, "id" | "createdAt" | "updatedAt">
+    >();
 
-        if (disciplineIndex >= disciplines.length) {
-          disciplineIndex = 0;
-        }
+    for (const discipline of disciplines) {
+      const participants = Array.from(
+        { length: count },
+        (el, idx): Omit<Participant, "id" | "createdAt" | "updatedAt"> => {
+          if (personIndex >= people.length) {
+            personIndex = 0;
+          }
 
-        return {
-          club: Math.random() > 0.3 ? faker.lorem.words() : null,
-          team: Math.random() > 0.3 ? faker.lorem.words() : null,
-          paid: Math.random() < 0.3 ? true : false,
-          personId: people[personIndex++].id,
-          disciplineId: disciplines[disciplineIndex++].id,
-        };
-      },
-    );
+          return {
+            club: Math.random() > 0.3 ? faker.lorem.words() : null,
+            team: Math.random() > 0.3 ? faker.lorem.words() : null,
+            paid: Math.random() < 0.3 ? true : false,
+            personId: people[personIndex++].id,
+            disciplineId: discipline.id,
+          };
+        },
+      );
+      disciplineParticipants.push(...participants);
+    }
 
-    await this.prisma.participant.createMany({ data: participants });
+    await this.prisma.participant.createMany({ data: disciplineParticipants });
   }
 }
