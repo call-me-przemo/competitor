@@ -10,11 +10,11 @@ export class CompetitionsDatabaseService extends DatabaseService {
   async getCompetitionsList(
     count: number,
     skip: number,
-    includeHidden: boolean = false,
-    includeInactive: boolean = false,
+    includeHidden = false,
+    includeInactive = false,
   ): Promise<CompetitionList> {
     const where: Prisma.CompetitionWhereInput = {
-      hidden: includeHidden ? undefined : false,
+      visible: includeHidden ? undefined : true,
       active: includeInactive ? undefined : true,
     };
 
@@ -22,7 +22,7 @@ export class CompetitionsDatabaseService extends DatabaseService {
       this.prisma.competition.findMany({
         skip,
         take: count,
-        orderBy: { dateFrom: "asc" },
+        orderBy: [{ dateFrom: "asc" }, { name: "asc" }, { place: "asc" }],
         select: {
           id: true,
           name: true,
@@ -47,7 +47,6 @@ export class CompetitionsDatabaseService extends DatabaseService {
 
     return {
       competitions,
-      count: competitions.length,
       skip,
       totalCount,
       includeHidden,

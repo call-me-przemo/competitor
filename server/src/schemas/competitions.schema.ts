@@ -26,7 +26,6 @@ export const competitionsSchema = {
             }),
           ),
           totalCount: Type.Integer(),
-          count: Type.Integer({ minimum: 0 }),
           skip: Type.Integer({ minimum: 0 }),
           includeHidden: Type.Boolean(),
           includeInactive: Type.Boolean(),
