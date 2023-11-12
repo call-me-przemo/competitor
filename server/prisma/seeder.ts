@@ -8,7 +8,6 @@ import {
   PrismaClient,
   User,
   UserRole,
-  CurrencyCode,
   Discipline,
   Participant,
 } from "@prisma/client";
@@ -37,12 +36,8 @@ export class Seeder {
     await this.prisma.person.createMany({ data: people });
   }
 
-  async seedUser(
-    count: number,
-    organizationMembersCount: number,
-    timersCount: number,
-  ) {
-    if (count + 2 < organizationMembersCount + timersCount) {
+  async seedUser(count: number, organizerCount: number, timerCount: number) {
+    if (count + 2 < organizerCount + timerCount) {
       throw new Error(
         `Number of organization members and timers must be less than number of all users plus 2
         (one for admin and minumum one for competitor role)`,
@@ -67,9 +62,9 @@ export class Seeder {
         mail: faker.internet.email() + idx,
         password: faker.internet.password(),
         role:
-          idx < organizationMembersCount
+          idx < organizerCount
             ? UserRole.ORGANIZER
-            : idx < organizationMembersCount + timersCount
+            : idx < organizerCount + timerCount
             ? UserRole.TIMER
             : idx + 1 === count
             ? UserRole.ADMIN
@@ -169,7 +164,7 @@ export class Seeder {
           country: faker.location.country(),
           place: faker.location.city(),
           active: Math.random() > 0.3 ? true : false,
-          hidden: Math.random() > 0.2 ? false : true,
+          visible: Math.random() > 0.2 ? true : false,
           dateFrom,
           dateTo:
             Math.random() > 0.3 ? null : faker.date.soon({ refDate: dateFrom }),
@@ -239,7 +234,6 @@ export class Seeder {
       throw new Error(`Competitions table is empty, seed competitions first`);
     }
 
-    const currencyCodes = Object.values(CurrencyCode);
     const competitionDisciplines = new Array<Omit<Discipline, "id">>();
 
     for (const competition of competitions) {
@@ -256,10 +250,7 @@ export class Seeder {
               Math.random() > 0.3
                 ? faker.number.int({ min: 50, max: 1500 })
                 : null,
-            currency:
-              Math.random() > 0.3
-                ? currencyCodes[faker.number.int({ min: 1, max: 302 })]
-                : null,
+            currency: Math.random() > 0.3 ? faker.finance.currencyCode() : null,
             competitionId: competition.id,
           };
         },
