@@ -1,0 +1,8 @@
+{
+  "name": "browser",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "browser/src",
+  "// targets": "to see all targets run: nx show project browser --web",
+  "targets": {}
+}
