@@ -1,0 +1,9 @@
+services:
+  postgres:
+    image: postgres:16.2-alpine3.19
+    environment:
+      - POSTGRES_PASSWORD=competitor
+      - POSTGRES_USER=competitor
+      - POSTGRES_DB=competitor
+    ports:
+      - 5432:5432
