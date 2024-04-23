@@ -13,7 +13,7 @@
         "platform": "node",
         "outputPath": "dist/server",
         "format": ["cjs"],
-        "bundle": false,
+        "bundle": true,
         "main": "server/src/main.ts",
         "tsConfig": "server/tsconfig.app.json",
         "assets": ["server/src/assets"],
@@ -41,7 +41,8 @@
       "executor": "@nx/js:node",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "server:build"
+        "buildTarget": "server:build",
+        "runtimeArgs": ["--env-file=server/.env"]
       },
       "configurations": {
         "development": {
