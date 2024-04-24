@@ -1,7 +1,6 @@
 import { FastifyInstance } from 'fastify';
 import { fastifySensible } from '@fastify/sensible';
 import root from './routes/root';
-import { fastifyStatic } from '@fastify/static';
 import { join } from 'path';
 
 export async function app(fastify: FastifyInstance) {
