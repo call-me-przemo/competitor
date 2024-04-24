@@ -1,9 +1,3 @@
-<script setup lang="ts">
-import NxWelcome from '../app/NxWelcome.vue';
-</script>
-
 <template>
-  <main>
-    <NxWelcome />
-  </main>
+  <Message severity="success">Hi</Message>
 </template>

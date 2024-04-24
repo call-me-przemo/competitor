@@ -38,6 +38,7 @@
     "prisma": "^5.12.1",
     "ts-node": "10.9.2",
     "typescript": "~5.4.5",
+    "unplugin-vue-components": "^0.26.0",
     "vite": "~5.2.10",
     "vitest": "^1.5.0",
     "vue-tsc": "^2.0.14"
@@ -46,6 +47,7 @@
     "@fastify/sensible": "~5.5.0",
     "@prisma/client": "5.12.1",
     "fastify": "~4.26.2",
+    "primevue": "4.0.0-beta.1",
     "tslib": "^2.6.2",
     "vue": "^3.4.24",
     "vue-router": "^4.3.2"
