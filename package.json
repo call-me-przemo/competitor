@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {},
   "private": true,
+  "type": "module",
   "devDependencies": {
     "@nx/esbuild": "18.3.3",
     "@nx/eslint": "18.3.3",
