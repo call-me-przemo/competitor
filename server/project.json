@@ -52,6 +52,12 @@
           "buildTarget": "server:build:production"
         }
       }
+    },
+    "prisma-generate": {
+      "command": "pnpm prisma generate --schema=server/prisma/schema.prisma"
+    },
+    "prisma-migrate-dev": {
+      "command": "pnpm prisma migrate dev --schema=server/prisma/schema.prisma"
     }
   }
 }
