@@ -10,7 +10,7 @@ export async function app(fastify: FastifyInstance) {
 
   // register dev plugins
   if (process.env.NODE_ENV === 'dev') {
-    fastify.register(fastifyStatic, {
+    fastify.register(import('@fastify/static'), {
       root: join(__dirname, 'public'),
       prefix: '/public',
     });
