@@ -18,8 +18,8 @@ importers:
         specifier: ~4.26.2
         version: 4.26.2
       primevue:
-        specifier: 4.0.0-beta.1
-        version: 4.0.0-beta.1(vue@3.4.24(typescript@5.4.5))
+        specifier: ^3.52.0
+        version: 3.52.0(vue@3.4.24(typescript@5.4.5))
       tslib:
         specifier: ^2.6.2
         version: 2.6.2
@@ -3528,8 +3528,8 @@ packages:
     resolution: {integrity: sha512-Pdlw/oPxN+aXdmM9R00JVC9WVFoCLTKJvDVLgmJ+qAffBMxsV85l/Lu7sNx4zSzPyoL2euImuEwHhOXdEgNFZQ==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  primevue@4.0.0-beta.1:
-    resolution: {integrity: sha512-NGVPAODdoj58p0kKUhnb35cmFOtPzU3Zr4mxzEMNV0j+TYrhKlAqSUaIlT/KyMWvJ/7yQEtXoepprvX9OaW4Mg==}
+  primevue@3.52.0:
+    resolution: {integrity: sha512-HLOVP5YI0ArFKUhIyfZsWmTNMaBYNCBWC/3DYvdd/Po4LY5/WXf7yIYvArE2q/3OuwSXJXvjlR8UNQeJYRSQog==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -8457,7 +8457,7 @@ snapshots:
       ansi-styles: 5.2.0
       react-is: 18.2.0
 
-  primevue@4.0.0-beta.1(vue@3.4.24(typescript@5.4.5)):
+  primevue@3.52.0(vue@3.4.24(typescript@5.4.5)):
     dependencies:
       vue: 3.4.24(typescript@5.4.5)
 
