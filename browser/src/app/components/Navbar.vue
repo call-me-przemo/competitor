@@ -10,8 +10,8 @@ const items = ref<MenuItem[]>([]);
   <Menubar :model="items">
     <template #start>
       <RouterLink :to="{ name: 'home' }" class="flex align-items-center">
-        <Image src="/icon.png" alt="app logo" width="50" class="mr-2" />
-        <p class="text-3xl">Competitor</p>
+        <Image src="/icon.png" alt="app logo" width="30" class="mr-2" />
+        <p class="text-xl">Competitor</p>
       </RouterLink>
     </template>
   </Menubar>
