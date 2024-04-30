@@ -1,0 +1,3 @@
+@layer reset, primevue;
+
+@import '@unocss/reset/tailwind.css' layer(reset);

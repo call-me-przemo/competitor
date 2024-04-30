@@ -46,7 +46,9 @@
   "dependencies": {
     "@fastify/sensible": "~5.5.0",
     "@prisma/client": "5.12.1",
+    "@unocss/reset": "^0.59.4",
     "fastify": "~4.26.2",
+    "primeflex": "^3.3.1",
     "primevue": "^3.52.0",
     "tslib": "^2.6.2",
     "vue": "^3.4.24",
