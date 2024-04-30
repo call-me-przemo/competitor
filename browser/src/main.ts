@@ -1,6 +1,10 @@
-import router from './router';
-import PrimeVueStyled from 'primevue/styled';
+import router from './app/router';
+import PrimeVue from 'primevue/config';
 import { createApp } from 'vue';
 import App from './app/App.vue';
 
-createApp(App).use(router).use(PrimeVueStyled).mount('#root');
+import './assets/main.css';
+import 'primevue/resources/themes/aura-dark-teal/theme.css';
+import 'primeflex/primeflex.css';
+
+createApp(App).use(router).use(PrimeVue, { ripple: true }).mount('#root');
