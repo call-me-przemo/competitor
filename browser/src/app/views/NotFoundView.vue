@@ -7,6 +7,6 @@ useTitle('404 | Competitor');
   <div
     class="flex min-h-screen text-teal-300 align-items-center justify-content-center"
   >
-    <h1 class="font-italic text-2xl">Not found</h1>
+    <h1 class="font-italic text-2xl md:text-4xl">Not found</h1>
   </div>
 </template>
