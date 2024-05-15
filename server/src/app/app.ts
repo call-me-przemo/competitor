@@ -2,6 +2,7 @@ import { FastifyInstance } from 'fastify';
 import { fastifySensible } from '@fastify/sensible';
 import root from './routes/root';
 import { join } from 'path';
+import { seedDb } from './database/seeders';
 
 export async function app(fastify: FastifyInstance) {
   // register global plugins
@@ -10,9 +11,11 @@ export async function app(fastify: FastifyInstance) {
   // register dev plugins
   if (process.env.NODE_ENV === 'dev') {
     fastify.register(import('@fastify/static'), {
-      root: join(__dirname, 'public'),
+      root: join(__dirname, '..', '..', '..', 'public'),
       prefix: '/public',
     });
+
+    await seedDb();
   }
 
   // register routes
