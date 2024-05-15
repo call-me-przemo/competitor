@@ -22,25 +22,13 @@ To launch app you need to:
 pnpm i
 ```
 
-2. Generate prisma client
-
-```sh
-pnpm nx prisma-generate server
-```
-
-3. Spin up database
+2. Spin up database
 
 ```sh
 docker compose up -d
 ```
 
-4. Migrate database
-
-```sh
-pnpm nx prisma-migrate-dev server
-```
-
-5. Run services
+3. Run services
 
 ```sh
 pnpm nx run-many -t serve
