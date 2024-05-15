@@ -13,7 +13,7 @@
         "platform": "node",
         "outputPath": "dist/server",
         "format": ["cjs"],
-        "bundle": true,
+        "bundle": false,
         "main": "server/src/main.ts",
         "tsConfig": "server/tsconfig.app.json",
         "assets": [
@@ -57,13 +57,11 @@
         "production": {
           "buildTarget": "server:build:production"
         }
-      }
-    },
-    "prisma-generate": {
-      "command": "pnpm prisma generate --schema=server/prisma/schema.prisma"
+      },
+      "dependsOn": ["prisma-migrate-dev"]
     },
     "prisma-migrate-dev": {
-      "command": "pnpm prisma migrate dev --schema=server/prisma/schema.prisma"
+      "command": "pnpm prisma migrate dev --schema=server/src/app/database/schema.prisma"
     }
   }
 }
