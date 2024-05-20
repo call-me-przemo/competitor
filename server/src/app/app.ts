@@ -14,6 +14,12 @@ export async function app(fastify: FastifyInstance) {
       root: join(__dirname, '..', '..', '..', 'public'),
       prefix: '/public',
     });
+    fastify.register(import('@fastify/swagger'), {
+      swagger: {
+        info: { title: 'Competitor REST API', version: '0.0.0' },
+      },
+    });
+    fastify.register(import('@fastify/swagger-ui'));
 
     await seedDb();
   }
