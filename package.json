@@ -8,6 +8,8 @@
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
     "@fastify/static": "^7.0.3",
+    "@fastify/swagger": "^8.14.0",
+    "@fastify/swagger-ui": "^3.0.0",
     "@nx/esbuild": "19.0.0",
     "@nx/eslint": "19.0.0",
     "@nx/eslint-plugin": "19.0.0",
