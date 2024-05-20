@@ -33,3 +33,7 @@ docker compose up -d
 ```sh
 pnpm nx run-many -t serve
 ```
+
+## Endpoints documentation
+
+Endpoints documentation, using swagger open api, is available at: http://localhost:3000/documentation
