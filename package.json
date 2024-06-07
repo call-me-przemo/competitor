@@ -54,6 +54,7 @@
     "argon2": "^0.40.1",
     "fastify": "~4.26.2",
     "primeflex": "^3.3.1",
+    "primeicons": "^7.0.0",
     "primevue": "^3.52.0",
     "tslib": "^2.6.2",
     "vue": "^3.4.24",

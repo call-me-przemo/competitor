@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
 import Navbar from './components/Navbar.vue';
-import Footerbar from './components/Footerbar.vue';
+import Footer from './components/Footer.vue';
 </script>
 
 <template>
@@ -9,11 +9,11 @@ import Footerbar from './components/Footerbar.vue';
     <nav>
       <Navbar />
     </nav>
-    <main class="m-auto h-max">
+    <main class="m-auto">
       <RouterView />
     </main>
     <footer>
-      <Footerbar />
+      <Footer />
     </footer>
   </div>
 </template>
