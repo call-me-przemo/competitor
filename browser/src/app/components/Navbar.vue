@@ -7,7 +7,7 @@ import { RouterLink } from 'vue-router';
 const items = ref<MenuItem[]>([]);
 </script>
 <template>
-  <Menubar :model="items">
+  <Menubar :model="items" :pt="{ root: { class: 'border-primary border-none border-bottom-1 border-noround' } }">
     <template #start>
       <RouterLink :to="{ name: 'index' }" class="flex align-items-center">
         <Image src="/icon.png" alt="app logo" class="mr-2 w-3rem" />
