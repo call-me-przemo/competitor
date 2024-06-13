@@ -16,18 +16,20 @@ export async function seedDb() {
     return;
   }
 
-  const compeititonIds = Array.from({ length: 100 }, () =>
-    faker.string.uuid(),
-  ).concat([
+  const uuids = [
     '2c077a18-9a82-4bb5-b109-16bee4fce722',
     '7ff9ce50-820e-433c-9555-8c78e347bc63',
     '8e2ce92e-ed21-45f6-93c3-6f3a5f5b8846',
     'afe7dfae-70d0-4a93-b9fe-dac6981d871e',
     'fe5bf8a5-1c12-485e-ae8b-d1b6bedd6851',
-  ]);
+  ];
+
+  const compeititonIds = Array.from({ length: 100 }, () =>
+    faker.string.uuid(),
+  ).concat(uuids);
 
   const compeititons = compeititonIds.map<
-    Omit<Competition, 'createdAt' | 'updatedAt' | 'posterExtension'>
+    Omit<Competition, 'createdAt' | 'updatedAt'>
   >((id) => ({
     id,
     name: faker.word.words(),
@@ -35,6 +37,7 @@ export async function seedDb() {
     date: faker.date.soon(),
     distance: faker.number.int({ min: 1, max: 1000000000 }),
     distanceUnit: faker.helpers.enumValue(DistanceUnit),
+    posterExtension: uuids.includes(id) ? 'jpg' : null,
   }));
 
   const userUniqueData = Array.from(
