@@ -1,12 +1,17 @@
 import { FastifyInstance } from 'fastify';
 import { fastifySensible } from '@fastify/sensible';
-import root from './routes/root';
 import { join } from 'path';
 import { seedDb } from './database/seeders';
+import { DatabaseService } from './services';
+import { competitionsRoutes } from './routes/competitions';
 
 export async function app(fastify: FastifyInstance) {
+  // initialize global services
+  const databaseService = new DatabaseService();
+
   // register global plugins
   fastify.register(fastifySensible);
+  fastify.decorate('databaseService', databaseService);
 
   // register dev plugins
   if (process.env.NODE_ENV === 'dev') {
@@ -25,5 +30,12 @@ export async function app(fastify: FastifyInstance) {
   }
 
   // register routes
-  fastify.register(root, { prefix: '/root' });
+  fastify.register(competitionsRoutes, { prefix: '/competitions' });
+}
+
+// declare registered services for typescript support
+declare module 'fastify' {
+  export interface FastifyInstance {
+    databaseService: DatabaseService;
+  }
 }
