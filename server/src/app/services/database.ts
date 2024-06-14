@@ -26,7 +26,7 @@ export class DatabaseService {
 
     const competitions = competitionsEntity.map((competition) => ({
       ...competition,
-      dateTz: competition.date.getTime(),
+      dateTs: competition.date.getTime(),
     }));
 
     return {

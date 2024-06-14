@@ -20,7 +20,7 @@ export const competitionsSchema = {
               id: Type.String(),
               name: Type.String(),
               place: Type.String(),
-              dateTz: Type.Number(),
+              dateTs: Type.Number(),
               posterExtension: Type.Optional(Type.String()),
             }),
           ),
