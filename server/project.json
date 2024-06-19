@@ -62,6 +62,19 @@
     },
     "prisma-migrate-dev": {
       "command": "pnpm prisma migrate dev --schema=server/src/app/database/schema.prisma"
+    },
+    "integration-test": {
+      "executor": "@nx/vite:test",
+      "options": {
+        "configFile": "{projectRoot}/vitest.integration.config.ts"
+      },
+      "dependsOn": ["prisma-migrate-dev"]
+    },
+    "unit-test": {
+      "executor": "@nx/vite:test",
+      "options": {
+        "configFile": "{projectRoot}/vitest.unit.config.ts"
+      }
     }
   }
 }
