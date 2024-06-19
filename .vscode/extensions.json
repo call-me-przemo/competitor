@@ -3,6 +3,7 @@
     "nrwl.angular-console",
     "esbenp.prettier-vscode",
     "yigitfindikli.primeflexsnippets",
-    "vue.volar"
+    "vue.volar",
+    "prisma.prisma"
   ]
 }
