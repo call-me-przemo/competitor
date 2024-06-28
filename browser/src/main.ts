@@ -4,7 +4,7 @@ import { createApp } from 'vue';
 import App from './app/App.vue';
 
 import './assets/main.css';
-import 'primevue/resources/themes/aura-dark-teal/theme.css';
+import 'primevue/resources/themes/aura-dark-noir/theme.css';
 import 'primeflex/primeflex.css';
 import 'primeicons/primeicons.css';
 

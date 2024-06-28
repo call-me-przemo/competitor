@@ -4,5 +4,5 @@ import { useTitle } from '@vueuse/core';
 useTitle('404 | Competitor');
 </script>
 <template>
-  <h1 class="font-italic text-red-500 text-2xl md:text-4xl">Not found</h1>
+  <h1 class="font-italic text-2xl md:text-4xl">Not found</h1>
 </template>
