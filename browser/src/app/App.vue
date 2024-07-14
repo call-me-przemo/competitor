@@ -5,11 +5,11 @@ import Footer from './components/Footer.vue';
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-column">
+  <div class="min-h-screen flex flex-col">
     <nav>
       <Navbar />
     </nav>
-    <main class="m-auto">
+    <main class="m-auto p-8">
       <RouterView />
     </main>
     <footer>

@@ -33,7 +33,7 @@ const images = [
 ];
 </script>
 <template>
-  <section class="flex align-items-center justify-content-center">
+  <section class="flex justify-center">
     <Galleria
       :value="images"
       :circular="true"
@@ -45,11 +45,7 @@ const images = [
       :transitionInterval="2000"
       :showIndicatorsOnItem="true"
       :pt="{
-        root: {
-          class: 'm-2 lg:m-4 border-1 border-primary border-round xl:w-6',
-        },
-        previousItemIcon: { class: 'text-primary' },
-        nextItemIcon: { class: 'text-primary' },
+        root: { class: 'lg:w-3/4' },
       }"
     >
       <template #item="slotProps">
