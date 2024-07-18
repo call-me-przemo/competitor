@@ -7,6 +7,7 @@ export class DatabaseService {
   getCompetitionsList = async (
     count: number,
     skip: number,
+    dateFromTs?: number,
   ): Promise<CompetitionsListReply> => {
     const [competitionsEntity, totalCount] = await Promise.all([
       this.prisma.competition.findMany({
@@ -20,8 +21,19 @@ export class DatabaseService {
           date: true,
           posterExtension: true,
         },
+        where: {
+          date: {
+            gt: dateFromTs == null ? new Date() : new Date(dateFromTs),
+          },
+        },
       }),
-      this.prisma.competition.count(),
+      this.prisma.competition.count({
+        where: {
+          date: {
+            gt: dateFromTs == null ? new Date() : new Date(dateFromTs),
+          },
+        },
+      }),
     ]);
 
     const competitions = competitionsEntity.map((competition) => ({

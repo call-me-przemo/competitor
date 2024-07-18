@@ -9,8 +9,8 @@ export class CompetitionsController {
     Querystring: CompetitionsListQuerystring;
     Reply: CompetitionsListReply;
   }> = async (req, rep) => {
-    const { count, skip } = req.query;
+    const { count, skip, dateFromTs } = req.query;
 
-    return this.dbSvc.getCompetitionsList(count, skip);
+    return this.dbSvc.getCompetitionsList(count, skip, dateFromTs);
   };
 }
