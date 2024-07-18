@@ -15,9 +15,9 @@ suite('Database Service', async () => {
     await seedDb();
   });
 
-  test('should return paginated list of competitions', async () => {
-    const listOne = await dbSvc.getCompetitionsList(6, 0);
-    const listTwo = await dbSvc.getCompetitionsList(5, 5);
+  test('should return paginated list of all competitions', async () => {
+    const listOne = await dbSvc.getCompetitionsList(6, 0, 0);
+    const listTwo = await dbSvc.getCompetitionsList(5, 5, 0);
 
     expect(listOne.competitions).toHaveLength(6);
     expect(listOne.skip).toBe(0);
@@ -26,6 +26,21 @@ suite('Database Service', async () => {
     expect(listTwo.competitions).toHaveLength(5);
     expect(listTwo.skip).toBe(5);
     expect(listTwo.totalCount).toBe(105);
+
+    expect(listOne.competitions.at(-1)).toStrictEqual(listTwo.competitions[0]);
+  });
+
+  test('should return paginated list of future competitions', async () => {
+    const listOne = await dbSvc.getCompetitionsList(6, 0);
+    const listTwo = await dbSvc.getCompetitionsList(5, 5);
+
+    expect(listOne.competitions).toHaveLength(6);
+    expect(listOne.skip).toBe(0);
+    expect(listOne.totalCount).toBe(85);
+
+    expect(listTwo.competitions).toHaveLength(5);
+    expect(listTwo.skip).toBe(5);
+    expect(listTwo.totalCount).toBe(85);
 
     expect(listOne.competitions.at(-1)).toStrictEqual(listTwo.competitions[0]);
   });

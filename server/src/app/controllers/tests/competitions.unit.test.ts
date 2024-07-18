@@ -13,6 +13,7 @@ suite('Competitions Controller', () => {
       query: {
         count: 10,
         skip: 5,
+        dateFromTs: 0,
       },
     };
 
@@ -21,6 +22,7 @@ suite('Competitions Controller', () => {
     expect(dbSvcMock.getCompetitionsList).toHaveBeenCalledWith(
       req.query.count,
       req.query.skip,
+      req.query.dateFromTs,
     );
   });
 });

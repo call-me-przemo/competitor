@@ -9,6 +9,7 @@ export const competitionsSchema = {
         {
           count: Type.Integer({ minimum: 0 }),
           skip: Type.Integer({ minimum: 0 }),
+          dateFromTs: Type.Optional(Type.Integer({ minimum: 0 })),
         },
         { additionalProperties: false },
       ),

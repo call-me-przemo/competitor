@@ -30,11 +30,14 @@ export async function seedDb() {
 
   const compeititons = compeititonIds.map<
     Omit<Competition, 'createdAt' | 'updatedAt'>
-  >((id) => ({
+  >((id, idx) => ({
     id,
     name: faker.word.words(),
     place: faker.location.city(),
-    date: faker.date.soon(),
+    date:
+      idx < 20
+        ? faker.date.past({ years: 2 })
+        : faker.date.future({ years: 2 }),
     distance: faker.number.int({ min: 1, max: 1000000000 }),
     distanceUnit: faker.helpers.enumValue(DistanceUnit),
     posterExtension: uuids.includes(id) ? 'jpg' : null,
