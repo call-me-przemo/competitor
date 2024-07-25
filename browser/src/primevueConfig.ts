@@ -19,11 +19,6 @@ export const primeVueConfig = {
           950: '{orange.950}',
         },
       },
-      components: {
-        menubar: {
-          background: '{primary-500}',
-        },
-      },
     }),
     ripple: true,
     options: {
