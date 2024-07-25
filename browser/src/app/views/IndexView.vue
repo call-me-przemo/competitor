@@ -45,7 +45,7 @@ const images = [
       :transitionInterval="2000"
       :showIndicatorsOnItem="true"
       :pt="{
-        root: { class: 'lg:w-3/4' },
+        root: { class: 'lg:w-3/4 2xl:w-1/2' },
       }"
     >
       <template #item="slotProps">
